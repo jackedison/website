@@ -406,7 +406,23 @@ Successfully done (with some referencing :P).
 
 <h2> Chapter 7: Error Handling </h2>
 
+You can run Flask in debug mode to better understand errors in the browser by setting:
 
+`export FLASK_DEBUG=1`
+
+<h3> Custom error pages </h3>
+
+We can create our own custom error handler pages with an @app.errorhandler(404) decorator for HTTP errors 404 for example.
+
+We will create an error.py instead of putting in routes for our custom error handlers. We can then create some custom htmls 404.html and 500.html to inherit from base and keep the feel of the website. Finally, add import errors from my_package in \_\_init.\_\_py.
+
+<h3> Emailing and logging errors locally </h3>
+
+I'm not going to bother setting up emails but I will create log files locally using our old friend the logging package.
+
+We will add this into \_\_init\_\_.py again.
+
+<h2> Chapter 8: ? </h2>
 
 
 
