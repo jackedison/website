@@ -5,11 +5,13 @@ from flask_login import current_user, login_user, logout_user
 from flask_login import login_required  # @login_required decorator if needed
 from my_package.models import User
 from my_package import db
-from my_package.forms import RegistrationForm
+from my_package.forms import RegistrationForm, AboutMeForm
 from flask import request
 from werkzeug.urls import url_parse
+from datetime import datetime
 
 # This imports the Flask app
+
 
 @app.route('/')
 @app.route('/index')
@@ -78,6 +80,21 @@ def register():
     return render_template('register.html', title='Register', form=form)
 
 
+@app.route('/edit_profile', methods=['GET', 'POST'])
+@login_required
+def edit_profile():
+    # Check if user exists else 404
+    user = User.query.filter_by(username=current_user.username).first_or_404()
+    form = AboutMeForm()
+    if form.validate_on_submit():  # If form is valid and submit
+        current_user.about_me = form.about_me.data
+        db.session.commit()
+        flash('Your changes have been saved.')
+    elif request.method == 'GET':  # If GET request for form then fill about_me
+        form.about_me.data = current_user.about_me
+    return render_template('edit_profile.html', user=user, form=form)
+
+
 @app.route('/user/<username>')  # Dynamic <username> variable
 @login_required
 def user(username):
@@ -88,3 +105,11 @@ def user(username):
         {'author': user, 'body': 'Test post #2'}
     ]
     return render_template('user.html', user=user, posts=posts)
+
+
+# Code to run on every user request (e.g. for user last seen timestamp)
+@app.before_request
+def before_request():
+    if current_user.is_authenticated:  # if user is logged in
+        current_user.last_seen = datetime.utcnow()
+        db.session.commit()

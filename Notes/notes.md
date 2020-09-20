@@ -376,6 +376,37 @@ Instead of allowing users to upload custom avatars for now we will use Gravatar.
 
 Build this into the User class in models.
 
+Then adjust the user.html profile page to include the avatar.
+
+We can improve the backend implementation of this post layout by creating a post sub-template to refer to under a blog or on the user's page. To create a sub template we will create the file _post.html.
+
+With jinja2 we can include this with `{% include '_post/html' %}`
+
+<h3> Adding new columns to database without migration </h3>
+
+To make user's pages a bit more interesting we will add an about_me and last_see section. These will be added to the User model first which will require a database update.
+
+To database update as we don't have a migration framework set up we will have to manually add these two new columns to our user table in the website_data.db database.
+
+The code is implemented in db_manip.py for future functionality. SQLite3 datatypes for this process can be found [here](https://www.w3resource.com/sqlite/sqlite-data-types.php#:~:text=SQLite%20Date%20and%20Time%20Data,SSS%22).)
+
+Next two steps are to update the user.html to show our new statistics and to ensure we are recording them correctly.
+
+To log last_field we want to update the database whenever the user sends a request to the server. Instead of checking every request Flask offers a native feature .before_request we can add as a decorator over a function to run code before every request in routes.py.
+
+Profile editor to allow a user to edit their about_me. I will try and implement this myself. I know I will need:
+
+1. A form to fill that will update the db
+2. An html page to fill in an about me
+3. A route to that page
+
+4. A link on their profile page to edit the profile
+
+Successfully done (with some referencing :P).
+
+<h2> Chapter 7: Error Handling </h2>
+
+
 
 
 

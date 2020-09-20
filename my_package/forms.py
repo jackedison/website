@@ -1,6 +1,7 @@
 from flask_wtf import FlaskForm
 import wtforms
 from wtforms.validators import DataRequired, ValidationError, Email, EqualTo
+from wtforms.validators import Length
 from my_package.models import User
 
 
@@ -28,3 +29,8 @@ class RegistrationForm(FlaskForm):
         user = User.query.filter_by(email=email.data).first()
         if user is not None:
             raise ValidationError('Email already in use.')
+
+
+class AboutMeForm(FlaskForm):
+    about_me = wtforms.TextAreaField('About me')
+    submit = wtforms.SubmitField('Submit')
