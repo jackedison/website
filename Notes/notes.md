@@ -422,9 +422,53 @@ I'm not going to bother setting up emails but I will create log files locally us
 
 We will add this into \_\_init\_\_.py again.
 
-<h2> Chapter 8: ? </h2>
+<h2> Chapter 8: Followers </h2>
 
+Databases many-to-many relationships are more complex in the back-end. For example, a user could have many followers and be following many other users. This is non trivial to show using relational databases and must use an auxiliary table called an **association table**.
 
+Here we could have a big association table of all relationships such as:
+
+| follower_id | followed_id |
+| ---- | ---- |
+| 1 | 2 |
+| 1 | 3 |
+| 1 | 4 |
+| 2 | 3 |
+| 3 | 4 |
+
+This is the most efficient way to store all the data memory wise, and then could be queried for specific followers or following.
+
+We could add this to our database but since I don't need this feature for my site I won't bother.
+
+<h3> Unit Testing </h3>
+
+A fundamental part to any large program when comple features are added.
+
+Python includes a very useful `unittest` package that makes it easy to write and execute unit tests.
+
+We can create a tests.py module to implement some rests for our User class.
+
+These can be easily run with `python tests.py` from terminal. Or vscode implements inbuilt features to run.
+
+If we had implemented followers we could add a form to follow on the user's page and update their profile to show the number of followers. We have done pretty similar stuff already so only new feature here would be a many to many database set up.
+
+<h2> Chapter 9: Pagination </h2>
+
+Submission of new posts.
+
+To submit new posts to our blog we could build a method in browser (form class) instead of doing it directly from terminal.
+
+**LETS TRY BUILD A PROPER BLOG AREA FIRST**
+
+1. Default blog page with title, text, pictures?
+
+2. Page that shows all blog thumbnails and can click through
+
+3. Blog link on toolbar
+
+4. Create a blog and see how it all works. Data storage etc.
+
+5. Consider implementing web form to do so (pagination)
 
 
 **question/to do: how would we implement a relational database from ground up? what links in a class (like our linked list attempt)**
