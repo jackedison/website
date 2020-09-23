@@ -3,7 +3,7 @@ from my_package import app
 from my_package.forms import LoginForm
 from flask_login import current_user, login_user, logout_user
 from flask_login import login_required  # @login_required decorator if needed
-from my_package.models import User
+from my_package.models import User, Post, Projects
 from my_package import db
 from my_package.forms import RegistrationForm, AboutMeForm
 from flask import request
@@ -19,11 +19,11 @@ def index():
     posts = [
         {
             'author': {'username': 'Luke'},
-            'body': 'Buongiorno!'
+            'body': 'Welcome to day 1 of the website!'
         },
         {
             'author': {'username': 'Sam'},
-            'body': 'I can\'t believe they didn\'t let me bring my knife on the plane!'
+            'body': 'Maybe we should add some CSS...'
         }
     ]
     # Return HTML code from template and rendered variables
@@ -105,6 +105,18 @@ def user(username):
         {'author': user, 'body': 'Test post #2'}
     ]
     return render_template('user.html', user=user, posts=posts)
+
+
+@app.route('/projects')  # Page to share my projects
+def projects():
+    # Send html the db of my projects and thats about it?
+    # Feed table name in as db then db.column in html
+    projects = Projects.query.all()  # imported from models
+    intro = '''
+    Below are programming projects I have worked on in recent times. My 
+    particular interests have been in market analysis, AI for game solving, 
+    and some convenient tools. Click on images to go to project/github.'''
+    return render_template('projects.html', intro=intro, projects=projects)
 
 
 # Code to run on every user request (e.g. for user last seen timestamp)

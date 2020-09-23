@@ -52,3 +52,31 @@ class Post(db.Model):
 
     def __repr__(self):
         return '<Post {}'.format(self.body)
+
+
+# Create SQLAlchemy Projects mnodel for instance
+class Projects(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(60))
+    body = db.Column(db.Text)
+    date = db.Column(db.DateTime, index=True, default=datetime.utcnow)
+    img_path = db.Column(db.String(60))  # Path to img
+    url_to_link = db.Column(db.String(60))
+
+    # Could also add:
+    # language coded in (list). Thinking bullet points of colour coded in html
+    # frameworks/packages used (list)
+    # category (finance, game solving, other?) Then can filter for with html
+    # link: type (github, website) and link
+
+    # For a list we want a second table. We would then join on project id.
+    # id | Project id | Language used
+    # 1 | 1 | Python
+    # 2 | 1 | HTML
+    # 3 | 1 | CSS
+    # 4 | 2 | Python
+
+
+
+    def __repr__(self):
+        return '<Project {}'.format(self.title)

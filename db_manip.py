@@ -22,6 +22,19 @@ def add_column(conn, cursor, table, column, data_type):
     conn.commit()
 
 
+def add_table(conn, cursor, table_name, cols_in_sql):
+    command = 'CREATE TABLE {} '.format(table_name) + cols_in_sql
+    cursor.execute(command)
+    conn.commit()
+
+
+def del_table(conn, cursor, table_name, truncate=False):
+    command = 'TRUNCATE' if truncate else 'DROP'
+    command += ' TABLE {}'.format(table_name)
+    cursor.execute(command)
+    conn.commit()
+
+
 if __name__ == '__main__':
     conn = sqlite3.connect('website_data.db')
     cursor = conn.cursor()
@@ -33,5 +46,22 @@ if __name__ == '__main__':
 
     #add_column(conn, cursor, 'user', 'about_me', 'VARCHAR(140)')
     #add_column(conn, cursor, 'user', 'last_seen', 'DATETIME')
+
+    # see https://www.w3schools.com/sql/sql_primarykey.ASP
+
+    cols_in_sql = '''(
+        id INT NOT NULL,
+        title VARCHAR(60),
+        body TEXT,
+        date DATETIME,
+        img_path VARCHAR(60),
+        url_to_link VARCHAR(60),
+        PRIMARY KEY (id)
+    )'''
+
+    #add_table(conn, cursor, 'projects', cols_in_sql)
+    #del_table(conn, cursor, 'projects')
+    # Actually can just db.create_all() is better...
+
     conn.close()
 

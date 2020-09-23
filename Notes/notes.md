@@ -262,7 +262,7 @@ In Python prompt to add users/posts:
 
 `from my_package.models import User, Post`
 
-`db.create_all()` - create .db file if not yet initiated with tables in models.py
+`db.create_all()` - create any new tables into db. Will not attempt to create any tables if they already exist. Note db.drop_all() to remove.
 
 `u = User(username='Jack', email='jack.edison95@gmail.com')`
 
@@ -458,20 +458,28 @@ Submission of new posts.
 
 To submit new posts to our blog we could build a method in browser (form class) instead of doing it directly from terminal.
 
-**LETS TRY BUILD A PROPER BLOG AREA FIRST**
+<h2> Actually lets convert this into my website now then go back to tutorial and add anything else </h2>
 
-1. Default blog page with title, text, pictures?
+**LETS TRY BUILD A PROPER MY PROJECTS AREA FIRST - Blog later**
 
-2. Page that shows all blog thumbnails and can click through
+1. A 'Projects' page. We will need routing to it, an html of it, a table for my projects in the db that the page displays.
 
-3. Blog link on toolbar
+2. Page that shows all my projects thumbnails and can click through. Should link to github or another web page ig, no need for default blog post page for now.
+- database of projects
+- html for project in projects display title, body, image, date, etc.
 
-4. Create a blog and see how it all works. Data storage etc.
+3. Projects link on toolbar
+
+4. Create a project and see how it all works. Data storage etc.
 
 5. Consider implementing web form to do so (pagination)
 
+N/A blog only?. Default my blog page with title, text, pictures?
+
 
 **question/to do: how would we implement a relational database from ground up? what links in a class (like our linked list attempt)**
+
+**add an API to databse for REST learning?**
 
 
 Sources:
