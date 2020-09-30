@@ -10,3 +10,4 @@
 
 
 {% block content %} - used by Jinja2 which flask includes to pass variables, content, conditional statements, looping, etc. into HTML
+

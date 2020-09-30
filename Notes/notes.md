@@ -476,6 +476,67 @@ To submit new posts to our blog we could build a method in browser (form class) 
 
 N/A blog only?. Default my blog page with title, text, pictures?
 
+<h2> CSS & HTML notes </h2>
+
+CSS (Cascading Style Sheets) is best practice for adding formatting to the HTML structure.
+
+HTML should include content, CSS styling. This makes it easier to edit later.
+
+CSS stylesheets are considered static files - there is no interaction with their code like there is with HTML templates.
+
+Flask reserves a separate folder where you should put static files such as CSS, Javascript, images, or other files. That folder should be named *static*. It is also good practice to have a sub-folder *css*.
+
+CSS refers to the HTML tags and div class names, applying fonts, colours, text, size, padding, margins, and background colours to those HTML elements.
+
+Our HTML file then has to inherit the css page. We can do this with our *base.html* page as our other pages will inherit from it.
+
+CSS can be added to an HTML document in 3 ways:
+
+1. Inline by using the `style` attribute inside HTML elements
+2. Internal by using a `<style>` element in the `<head>` section
+**3. External by using a `<link>` element to link to an external CSS file in the `<head>` section** It should be added to the `<head>` section to be  called upon website load and decrease loading times. *(note: javascript should be inverse and placed at the cloding of the `<body>` tag.)*
+
+In html you can use `meta` tags to assign meta data to the website. A title for google to scrape, a description, keywords, etc.
+
+**Lets create a proper home page**:
+
+* Photo of me
+* About section of me
+* Side links of images to linkedin etc
+
+Literally just copy Tristan Hume.
+
+Favicon: https://favicon.io/favicon-generator/ - kumbh sans font 110
+
+KISS - {keep it simple stupid}
+
+<h3> Colour scheme </h3>
+
+Colour scheme taken from advice and recommendation on colour picking here: https://blog.datawrapper.de/beautifulcolors/
+
+* color: black;
+* color: rgb(100, 181, 192);
+* color: rgb(28, 75, 117);
+* color: rgb(244, 175, 92);
+* color: rgb(174, 93, 33);
+
+
+We have our colour scheme, lets create super basic template with quality content now.
+
+In html by adding target="_blank" to urls we can set browser to open them in new tab. We will use this for all external webpages in the header.
+
+
+What next?:
+
+* comb through html and css any more best practices
+* photo to about section: speech circled and coming out to left of about
+* smaller project photos to index
+* start adding projects database - include key projects column. Add languages and make nicer
+* projects page nicer
+* proper about me section
+* push to github again!
+* host online
+
 
 **question/to do: how would we implement a relational database from ground up? what links in a class (like our linked list attempt)**
 

@@ -2,13 +2,7 @@
 
 {% block content %}
 <title>Projects</title>
-<style>
-    .projects {
-        width: 400px;
-        height: 200px;
-    }
-</style>
-
+<div class="container">
     <h1>Projects</h1>
     <p>{{ intro }}</p>
         {% for project in projects|reverse %}
@@ -16,9 +10,9 @@
             <table>
                 <tr valign="top">
                     <td>
-                        <a href="{{ project.url_to_link }}">
-                            <img src="{{ url_for('static', filename=project.img_path) }}"
-                            class="projects"
+                        <a href="{{ project.url_to_link }}" target="_blank">
+                            <img src="{{ url_for('static', filename=project.img()) }}"
+                            class="project_image"
                             alt="{{ project.title }}"/>
                         </a>
                     </td>
@@ -26,11 +20,17 @@
                     <td>
                         <h2>{{ project.title }}</h2>
                         <p>{{ project.body }}</p>
+                        <p>Languages: 
+                            {% for language in project.languages %}
+                                {{ language.language }}
+                            {% endfor %}
+                        </p>
                         <p><a href="{{ project.url_to_link }}">See project</a></p>
                         <p> Posted: {{ project.date.strftime('%A %d %b %Y at %H:%M') }}</p>
                     </td>
                 </tr>
             </table>
         {% endfor %}
+    </div>
 
 {% endblock %}

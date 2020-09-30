@@ -1,9 +1,24 @@
 {% extends "base.html" %}
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+</head>
+<body>
+    {% block content %}
+    <div class="container">
 
-{% block content %}
+        <section id="about">
+           <h1>About</h1>
+           <p>I'm a British/Swiss programmer working in quantitative finance. I have special interests in algorithms & data science (Python), competitive programming, arbitrage in derivatives markets, and compile type efficiency (C++/Java). I hold a BSc in Economics from the <a href="https://www.exeter.ac.uk/">Univeristy of Exeter</a> and an MSc in Computer Science from the <a href="https://www.bath.ac.uk/">Univeristy of Bath</a>. I am currently looking for work.</p>
+        </section>
 
-    <h1>Welcome {{ current_user.username}}!</h1>
-    {% for post in posts %}
-    <div><p>{{ post.author.username }} says: <b>{{ post.body }}</b></p></div>
-    {% endfor %}
-{% endblock %}
+        <section id="key-projects">
+            <h1>Key Projects</h1>
+            {% for project in projects|reverse %}
+                <h3 class="nolink"><a href="{{ project.url_to_link }}" target="_blank">{{ project.title }}</a></h3>
+                <p>{{ project.body }}</p>
+            {% endfor %}
+        </section>
+
+    </div>
+    {% endblock %}
+</body>

@@ -63,11 +63,16 @@ class Projects(db.Model):
     img_path = db.Column(db.String(60))  # Path to img
     url_to_link = db.Column(db.String(60))
 
+    languages = db.relationship('Language', backref='author', lazy='dynamic')
+    packages = db.relationship('Package', backref='author', lazy='dynamic')
+    frameworks = db.relationship('Framework', backref='author', lazy='dynamic')
+    categories = db.relationship('Category', backref='author', lazy='dynamic')
+
     # Could also add:
     # language coded in (list). Thinking bullet points of colour coded in html
     # frameworks/packages used (list)
     # category (finance, game solving, other?) Then can filter for with html
-    # link: type (github, website) and link
+    # link: type (github, website) and link. Just put Link/Github if github.
 
     # For a list we want a second table. We would then join on project id.
     # id | Project id | Language used
@@ -76,7 +81,48 @@ class Projects(db.Model):
     # 3 | 1 | CSS
     # 4 | 2 | Python
 
-
-
     def __repr__(self):
         return '<Project {}'.format(self.title)
+
+    def img(self):
+        return '/images/'+self.img_path
+
+
+# Table foreign key to projects
+class Language(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    project_id = db.Column(db.Integer, db.ForeignKey('projects.id'))
+    language = db.Column(db.String(20))
+
+    def __repr__(self):
+        return '<Language {}'.format(self.language)
+
+
+# Foreign key to projects for packages
+class Package(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    project_id = db.Column(db.Integer, db.ForeignKey('projects.id'))
+    package = db.Column(db.String(20))
+
+    def __repr__(self):
+        return '<Package {}'.format(self.package)
+
+
+# Foreign key to projects for frameworks
+class Framework(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    project_id = db.Column(db.Integer, db.ForeignKey('projects.id'))
+    framework = db.Column(db.String(20))
+
+    def __repr__(self):
+        return '<Framework {}'.format(self.framework)
+
+
+# Foreign key to projects for categories
+class Category(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    project_id = db.Column(db.Integer, db.ForeignKey('projects.id'))
+    category = db.Column(db.String(20))
+
+    def __repr__(self):
+        return '<Category {}'.format(self.category)

@@ -16,18 +16,10 @@ from datetime import datetime
 @app.route('/')
 @app.route('/index')
 def index():
-    posts = [
-        {
-            'author': {'username': 'Luke'},
-            'body': 'Welcome to day 1 of the website!'
-        },
-        {
-            'author': {'username': 'Sam'},
-            'body': 'Maybe we should add some CSS...'
-        }
-    ]
+    projects = Projects.query.all()  # imported from models
+
     # Return HTML code from template and rendered variables
-    return render_template('index.html', title='Home', posts=posts)
+    return render_template('index.html', projects=projects)
 
 
 # @ decorators associate the URLs / and /index to this function
@@ -112,11 +104,16 @@ def projects():
     # Send html the db of my projects and thats about it?
     # Feed table name in as db then db.column in html
     projects = Projects.query.all()  # imported from models
+
     intro = '''
     Below are programming projects I have worked on in recent times. My 
     particular interests have been in market analysis, AI for game solving, 
     and some convenient tools. Click on images to go to project/github.'''
     return render_template('projects.html', intro=intro, projects=projects)
+
+@app.route('/blog')
+def blog():
+    return render_template('blog.html')
 
 
 # Code to run on every user request (e.g. for user last seen timestamp)
