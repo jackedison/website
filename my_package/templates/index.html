@@ -7,18 +7,28 @@
     <div class="container">
 
         <section id="about">
-           <h1>About</h1>
-           <p>I'm a British/Swiss programmer working in quantitative finance. I have special interests in algorithms & data science (Python), competitive programming, arbitrage in derivatives markets, and compile type efficiency (C++/Java). I hold a BSc in Economics from the <a href="https://www.exeter.ac.uk/">Univeristy of Exeter</a> and an MSc in Computer Science from the <a href="https://www.bath.ac.uk/">Univeristy of Bath</a>. I am currently looking for work.</p>
+            <h1>About</h1>
+            <div class="text">
+                <p>I'm a British programmer living in Geneva, Switzerland working in quantitative finance. I have special interests in algorithms & data science (Python), 
+                    competitive programming, arbitrage in derivatives markets, and compile type efficiency (C++/Java). I hold a BSc in Economics 
+                    from the <a href="https://www.exeter.ac.uk/" target="_blank">Univeristy of Exeter</a> and an MSc in Computer Science from 
+                    the <a href="https://www.bath.ac.uk/" target="_blank">Univeristy of Bath</a>. When not working I occasionally develop side projects and enjoy economics
+                    and politics. This website hosts my profile, some project links, and blog posts.</p>
+            </div>
         </section>
 
         <section id="key-projects">
             <h1>Key Projects</h1>
-            {% for project in projects|reverse %}
-                <h3 class="nolink"><a href="{{ project.url_to_link }}" target="_blank">{{ project.title }}</a></h3>
-                <p>{{ project.body }}</p>
+            {% for project in projects|reverse if project.key_project %}
+            <div class="project">
+                <a class="left-image" href="{{ project.url_to_link }}" target="_blank"><img src="{{ url_for('static', filename=project.img()) }}" /></a>
+                <div class="project-desc">
+                    <h3 class="nolink"><a href="{{ project.url_to_link }}" target="_blank">{{ project.title }}</a></h3>
+                    <div class="project-body"><p>{{ project.body }}</p></div>
+                </div>
+             </div>
             {% endfor %}
         </section>
-
     </div>
     {% endblock %}
 </body>

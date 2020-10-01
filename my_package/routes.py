@@ -3,9 +3,9 @@ from my_package import app
 from my_package.forms import LoginForm
 from flask_login import current_user, login_user, logout_user
 from flask_login import login_required  # @login_required decorator if needed
-from my_package.models import User, Post, Projects
+from my_package.models import User, Post, Projects, Language, Package, Framework, Category
 from my_package import db
-from my_package.forms import RegistrationForm, AboutMeForm
+from my_package.forms import RegistrationForm, AboutMeForm, ProjectForm
 from flask import request
 from werkzeug.urls import url_parse
 from datetime import datetime
@@ -110,6 +110,87 @@ def projects():
     particular interests have been in market analysis, AI for game solving, 
     and some convenient tools. Click on images to go to project/github.'''
     return render_template('projects.html', intro=intro, projects=projects)
+
+
+@app.route('/edit_project/<id>', methods=['GET', 'POST'])
+@login_required
+def edit_project(id):
+    # Ensure only I can edit projects
+    print(current_user.username)
+    if current_user.username != "Jack":
+        return render_template('403.html')
+
+    project = Projects.query.filter_by(id=id).first_or_404()
+
+    form = ProjectForm()
+    if form.validate_on_submit():  # If form is valid and submit
+        if form.submit.data:
+            project.title = form.title.data
+            project.body = form.body.data
+            project.img_path = form.img_path.data
+            project.url_to_link = form.url_to_link.data
+            project.key_project = form.key_project.data
+
+            # Remove all languages from db and add all new ones
+            languages = project.languages
+            for language in languages:
+                db.session.delete(language)
+            for language in form.languages.data:
+                lang = Language(project_id=project.id, language=language)
+                project.languages.append(lang)
+
+            # Remove all packages from db and add all new ones
+            packages = project.packages
+            for package in packages:
+                db.session.delete(package)
+            for package in form.packages.data:
+                pack = Package(project_id=project.id, package=package)
+                project.packages.append(pack)
+
+            # Remove all frameworks from db and add all new ones
+            frameworks = project.frameworks
+            for framework in frameworks:
+                db.session.delete(framework)
+            for framework in form.frameworks.data:
+                frame = Framework(project_id=project.id, framework=framework)
+                project.frameworks.append(frame)
+
+            # Remove all categories from db and add all new ones
+            categories = project.categories
+            for category in categories:
+                db.session.delete(category)
+            for category in form.categories.data:
+                cat = Category(project_id=project.id, category=category)
+                project.categories.append(cat)
+
+            db.session.commit()
+            flash('Your changes have been saved.')
+
+        elif form.new_project.data:
+            # Create new db entry and redirect to new page
+            project = Projects()
+            db.session.add(project)
+            db.session.commit()
+            return redirect(url_for('edit_project', id=project.id))
+
+        elif form.delete.data:
+            # Delete current entry
+            db.session.delete(project)
+            db.session.commit()
+            return redirect(url_for('index'))
+
+    elif request.method == 'GET':  # If GET request for form then fill about_me
+        form.title.data = project.title
+        form.body.data = project.body
+        form.img_path.data = project.img_path
+        form.url_to_link.data = project.url_to_link
+        form.key_project.data = project.key_project
+        form.languages.data = [lang.language for lang in project.languages]
+        form.packages.data = [pack.package for pack in project.packages]
+        form.frameworks.data = [frame.framework for frame in project.frameworks]
+        form.categories.data = [cat.category for cat in project.categories]
+
+    return render_template('edit_project.html', project=project, form=form)
 
 @app.route('/blog')
 def blog():

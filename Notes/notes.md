@@ -528,14 +528,24 @@ In html by adding target="_blank" to urls we can set browser to open them in new
 
 What next?:
 
-* comb through html and css any more best practices
-* photo to about section: speech circled and coming out to left of about
+* couldnt find good way to add profile pic to home page
 * smaller project photos to index
-* start adding projects database - include key projects column. Add languages and make nicer
-* projects page nicer
 * proper about me section
+* projects database: have to manual sql query to add bool column. Can db.create_all() to add new tables at least.
+* way to edit projects more easily. We will create a projects page with project number and form. After create new button to add next.
+* need to add way to add languages too hmm
+* start adding projects database - include key projects column. Add languages and make nicer
+
+
+* Make the projects page look nicer
+* Start adding projects!
+
+* css flexbox game/tutorial AND NOTES on PC
+* comb through html and css any more best practices
 * push to github again!
 * host online
+* https?
+* database validators and migrate to restrictions in sql too.
 
 
 **question/to do: how would we implement a relational database from ground up? what links in a class (like our linked list attempt)**

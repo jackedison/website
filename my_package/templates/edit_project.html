@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+
+<h1>Edit Project: {{ project.id }}</h1>
+<form action="" method="post">
+    <!--Add a hidden field to protect against CSRF attacks-->
+    {{ form.hidden_tag() }}
+    <p>
+        {{ form.title.label }}<br>
+        {{ form.title(size=40, maxlength=40)}}<br><br>
+        {% for error in form.title.errors %}
+        <span style="color: red">[{{ error }}]</span>
+        {% endfor %}
+
+        {{ form.body.label }}<br>
+        {{ form.body(rows=5, cols=64, maxlength=190)}}<br><br>
+        {% for error in form.body.errors %}
+        <span style="color: red">[{{ error }}]</span>
+        {% endfor %}
+
+        {{ form.img_path.label }}<br>
+        {{ form.img_path(size=40)}}<br><br>
+        {% for error in form.img_path.errors %}
+        <span style="color: red">[{{ error }}]</span>
+        {% endfor %}
+
+        {{ form.url_to_link.label }}<br>
+        {{ form.url_to_link(size=70)}}<br><br>
+        {% for error in form.url_to_link.errors %}
+        <span style="color: red">[{{ error }}]</span>
+        {% endfor %}
+
+        {{ form.key_project.label }}<br>
+        {{ form.key_project()}}<br><br>
+        {% for error in form.key_project.errors %}
+        <span style="color: red">[{{ error }}]</span>
+        {% endfor %}
+
+        <div class="row_ep">
+            <div class="column_ep">
+                {{ form.languages.label }}<br>
+                <p>{{ form.languages(class='multipleselect') }}</p>
+            </div>
+
+            <div class="column_ep">
+                {{ form.packages.label }}<br>
+                <p>{{ form.packages(class='multipleselect') }}</p>
+            </div>
+
+            <div class="column_ep">
+                {{ form.frameworks.label }}<br>
+                <p>{{ form.frameworks(class='multipleselect') }}</p>
+            </div>
+
+            <div class="column_ep">
+                {{ form.categories.label }}<br>
+                <p>{{ form.categories(class='multipleselect') }}</p>
+            </div>
+        </div>
+
+        <p>Project submitted: {{ project.date }}</p>
+    </p>
+    <p>{{ form.submit(class='submit') }}</p>
+    <p>{{ form.delete(class='delete') }}</p>
+    <p>{{ form.new_project(class='new_project') }}</p>
+
+
+
+</form>
+
+</div>
+{% endblock %}

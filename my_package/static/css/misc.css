@@ -1,0 +1,65 @@
+.profile_photo {  /* dictate size */
+    max-height: 1000px;
+    width: auto;
+    height: auto;
+    overflow: hidden;
+}
+
+.profile_photo img {  /* crop */
+    width: 500px;
+    height: 800px;
+    margin: -75px 0 0 -100px;
+}
+
+temp {
+    background: url(../images/profile_photo.jpg) 50% 50% no-repeat; /* 50% 50% centers image in div */
+    width: 200px; /* width of container */
+    height: 200px; /* height of container */
+    object-fit: cover;
+    object-position: 20% 10px; 
+    border: 5px solid black;
+    border-radius: 50%;  /* round */
+}
+
+/* worked rip */
+.profile_photo {
+    background-image: url(../images/profile_photo.jpg);
+    /* resize */
+    width: 120px;
+    height: 120px;
+    /* move on page */
+    margin: -15px 0 0 -140px;
+    /* crop - vertical % shift and horizontal % shift */
+    background-position: 0% 25%;
+    /* Make the background image cover the area of the <div>, and clip the excess */
+    background-size: cover;
+
+    border: 0px solid black;
+    /*border-radius: 50%;  /* round */
+
+    /* so that it doesn't shift text */
+    position: absolute;
+
+  }
+
+  #about .profile_photo {
+    float: right;
+
+    /* where to slice the bottom and right of image. image space on page */
+    height: 130px;
+    width: 100px;
+    overflow: hidden;
+
+}
+
+#about .profile_photo img {
+    /* image scale */
+    max-height: 150px;
+    width: auto;
+    height: auto;
+    /* pan the image */
+    margin: 0 0 0 0;
+}
+
+#about .text {
+}

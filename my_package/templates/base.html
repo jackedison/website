@@ -39,9 +39,9 @@
                 {% endif %}
             </ul>
         </header>
+        <div class="container">
         {% with messages = get_flashed_messages() %}
         {% if messages %}
-        <hr>
         <ul>
             {% for message in messages %}
             <li>{{ message }}</li>
@@ -63,4 +63,5 @@
             <p><a href="mailto:jack.edison95@gmail.com" target="_blank">jack.edison95@gmail.com</a></p>
         </div>
     </footer>
+</div>
 </html>

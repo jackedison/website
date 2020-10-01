@@ -54,14 +54,15 @@ class Post(db.Model):
         return '<Post {}'.format(self.body)
 
 
-# Create SQLAlchemy Projects mnodel for instance
+# Create SQLAlchemy Projects model for instance
 class Projects(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(60))
-    body = db.Column(db.Text)
+    title = db.Column(db.String(40))
+    body = db.Column(db.String(190))
     date = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     img_path = db.Column(db.String(60))  # Path to img
     url_to_link = db.Column(db.String(60))
+    key_project = db.Column(db.Boolean)
 
     languages = db.relationship('Language', backref='author', lazy='dynamic')
     packages = db.relationship('Package', backref='author', lazy='dynamic')

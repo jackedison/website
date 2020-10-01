@@ -13,6 +13,7 @@ def print_table(conn, table):
 
     print('\nPrinting table {}'.format(table))
     print(df)
+    #print(df.dtypes)
 
 
 def add_column(conn, cursor, table, column, data_type):
@@ -44,7 +45,10 @@ if __name__ == '__main__':
     for table in tables:
         print_table(conn, table[0])
 
-    #add_column(conn, cursor, 'user', 'about_me', 'VARCHAR(140)')
+    table = 'projects'
+    col = 'key_project'
+    dtype = 'BOOLEAN'
+    #add_column(conn, cursor, table, col, dtype)
     #add_column(conn, cursor, 'user', 'last_seen', 'DATETIME')
 
     # see https://www.w3schools.com/sql/sql_primarykey.ASP

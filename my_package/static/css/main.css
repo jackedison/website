@@ -75,7 +75,6 @@ h2, h3, h4, h5, h6 {
     color: rgb(100, 181, 192);
 }
 
-
 p, div {
     font-family: 'Roboto', sans-serif;
 }
@@ -94,7 +93,36 @@ p, div {
     text-decoration: underline;
 }
 
+#key-projects .project {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	margin-top: 7px;
+}
 
+#key-projects .project .left-image {
+	width: 100px;
+	margin-right: 10px;
+	line-height: 0;
+}
+
+#key-projects .project .project-desc {
+	flex-grow: 1;
+}
+
+#key-projects .project .left-image img {
+    width: 100px;
+    border: 1px solid rgb(28, 75, 117);
+}
+
+#key-projects .project .project-desc p {
+	margin: 0;
+}
+
+#key-projects .project .project-desc h3 {
+    margin-top: 0;
+    margin-bottom: 0;
+}
 
 /* unvisited link */
 .nolink a:link {
@@ -116,14 +144,65 @@ body {
     background-color: rgb(255, 255, 255);
 }
 
+.project-page a h2:link {
+    color: rgb(100, 181, 192);
+    text-decoration: none;
+}
+
+.project-page a h2:visited {
+    color: rgb(100, 181, 192);
+    text-decoration: none;
+}
+
+.project-page a h2:hover {
+    text-decoration: underline;
+}
+
 
 
 /* Keep class ofproject images same size
    Can we scale to original image size better? */
 .project_image {
-    width: 400px;
+    float: left;
+    max-width:300px;
+    width: auto;
+    height: auto;
+    margin-top: 25px;
+}
+
+.submit {
+    width: 150px;
+    height: 30px;
+}
+
+.delete {
+    color: red;
+}
+
+.multipleselect {
+    width: 100px;
     height: 200px;
 }
+
+.new_project {
+    width: 150px;
+    height: 30px;
+    color: green;
+}
+
+/* Image containers (use 25% for four) */
+.column_ep {
+    float: left;
+    width: 25%;
+    padding: 0px;
+  }
+  
+  /* Clear floats after image containers */
+  .row_ep::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
 
 /* Colour scheme taken from advice and recommendation here: https://blog.datawrapper.de/beautifulcolors/ */
 .color_storage {
@@ -137,10 +216,7 @@ body {
 
 
 footer {
-    margin-left: auto;
-    margin-right: auto;
     padding-top: 20px;
-    max-width: 800px;
     font-family: 'Roboto', sans-serif;  /* https://fonts.google.com/specimen/Roboto?sort=popularity&sidebar.open=true&selection.family=Roboto */
     font-size: 80%;
     color: grey;
