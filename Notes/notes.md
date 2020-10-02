@@ -535,18 +535,42 @@ What next?:
 * way to edit projects more easily. We will create a projects page with project number and form. After create new button to add next.
 * need to add way to add languages too hmm
 * start adding projects database - include key projects column. Add languages and make nicer
-
-
-* Make the projects page look nicer
-* Start adding projects!
-
 * css flexbox game/tutorial AND NOTES on PC
-* comb through html and css any more best practices
+* make projects page look nicer
+
+
+
+* Keep adding projects
+
+* comb through html and css any more best practices (i.e. email)
 * push to github again!
 * host online
 * https?
 * database validators and migrate to restrictions in sql too.
+* First blog post about website construction?
+* javascript hover over an image make it bigger
 
+<h2> Hosting on Heroku </h2>
+
+Must be done through git.
+
+Heroku looks for a file called Procfile in root firectory. For Python also requires a requirements.txt file for all module dependencies.
+
+Install Heroku CLI to manage from terminal.
+
+`heroku apps:create my-package`
+
+`git remote -v` will now show you the new heroku git links.
+
+One problem with Heroku is that they use an ephemeral file system. This means data saved to the file system is wiped periodically.
+
+This is a problem for our sqlite3 database.
+
+We can create a free heroku postgres database with:
+
+`heroku addons:add heroku-postgresql:hobby-dev`. This will save the DATABASE_URL environmental variable so work with our tool.
+
+Procfile tells heroku how to execute.
 
 **question/to do: how would we implement a relational database from ground up? what links in a class (like our linked list attempt)**
 

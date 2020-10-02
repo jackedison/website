@@ -42,13 +42,14 @@ class ProjectForm(FlaskForm):
     img_path = wtforms.StringField('Image Path')
     url_to_link = wtforms.StringField('URL')
     key_project = wtforms.BooleanField('Key Project')
+    date = wtforms.DateTimeField('Date')
 
     choice_manip = lambda x: [(y, y) for y in x]
-    language_list = ['Python', 'C++', 'Java', 'HTML', 'CSS', 'Javascript']
+    language_list = ['Python', 'C++', 'Java', 'HTML', 'CSS', 'Javascript', 'JSON', 'SQLite3', 'MySQL']
     language_list = choice_manip(language_list)
     languages = wtforms.SelectMultipleField(u'Languages', choices=language_list)
 
-    package_list = ['numpy', 'pandas', 'matplotlib', 'keras']
+    package_list = ['numpy', 'pandas', 'matplotlib', 'keras', 'pygame', 'scipy']
     package_list = choice_manip(package_list)
     packages = wtforms.SelectMultipleField(u'Packages', choices=package_list)
 
@@ -56,7 +57,7 @@ class ProjectForm(FlaskForm):
     framework_list = choice_manip(framework_list)
     frameworks = wtforms.SelectMultipleField(u'Frameworks', choices=framework_list)
 
-    category_list = ['Finance', 'Monte Carlo', 'Games']
+    category_list = ['Finance', 'Monte Carlo', 'Games', 'Modelling']
     category_list = choice_manip(category_list)
     categories = wtforms.SelectMultipleField(u'Categories', choices=category_list)
 

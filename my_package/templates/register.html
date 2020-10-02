@@ -33,5 +33,11 @@
             {% endfor %}
         </p>
         <p>{{ form.submit() }}</p>
+
+        <div class='register-text'>
+            <p>
+                Your credentials are stored in an SQLite3 database and the password hashed with <a href="https://werkzeug.palletsprojects.com/en/1.0.x/utils/#module-werkzeug.security" target="_blank">pbkdf2:sha256</a>.
+            </p>
+        </div>
     </form>
 {% endblock %}

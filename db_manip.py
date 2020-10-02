@@ -13,6 +13,7 @@ def print_table(conn, table):
 
     print('\nPrinting table {}'.format(table))
     print(df)
+    print(df.columns)
     #print(df.dtypes)
 
 
@@ -34,6 +35,10 @@ def del_table(conn, cursor, table_name, truncate=False):
     command += ' TABLE {}'.format(table_name)
     cursor.execute(command)
     conn.commit()
+
+def sort_by_date(conn, cursor, table, date):
+    command = 'SELECT * FROM {} ORDER BY {} DESC'.format(table, date)
+    cursor.execute(command)
 
 
 if __name__ == '__main__':
@@ -66,6 +71,9 @@ if __name__ == '__main__':
     #add_table(conn, cursor, 'projects', cols_in_sql)
     #del_table(conn, cursor, 'projects')
     # Actually can just db.create_all() is better...
+
+    # Sort by date
+    #sort_by_date(conn, cursor, table='projects', date='date')
 
     conn.close()
 

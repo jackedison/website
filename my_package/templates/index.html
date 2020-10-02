@@ -17,8 +17,14 @@
             </div>
         </section>
 
+        <section id="CV">
+            <h1><a href="{{ url_for('static', filename='resume/Edison Jack CV.pdf')  }}">CV</a></h1>
+            <p>See my <a href="{{ url_for('static', filename='resume/Edison Jack CV.pdf')  }}">CV</a> with a summarised work history and details of the projects I have worked on during my career.</p>
+        </section>
+
         <section id="key-projects">
-            <h1>Key Projects</h1>
+            <h1>Personal Projects</h1>
+            <p>Some key personal projects I have worked on over the last few years. See the <a src="{{ url_for('projects') }}">Projects</a> page for a full list.</p>
             {% for project in projects|reverse if project.key_project %}
             <div class="project">
                 <a class="left-image" href="{{ project.url_to_link }}" target="_blank"><img src="{{ url_for('static', filename=project.img()) }}" /></a>

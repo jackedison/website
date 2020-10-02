@@ -28,7 +28,6 @@
             <ul id="main_nav">
                 <li><a href="{{ url_for('index') }}">Home</a></li>
                 <li><a href="https://github.com/jackedison" target="_blank">Github</a></li>
-                <li><a href="{{ url_for('static', filename='resume/Edison Jack CV.pdf')  }}">Resume</a></li>
                 <li><a href="{{ url_for('projects') }}">Projects</a></li>
                 <li><a href="{{ url_for('blog') }}">Blog</a></li>
                 {% if current_user.is_anonymous %}

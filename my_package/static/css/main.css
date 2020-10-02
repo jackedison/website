@@ -79,17 +79,27 @@ p, div {
     font-family: 'Roboto', sans-serif;
 }
 
-.container a:link {
+.container p a:link {
     color: rgb(28, 75, 117);
     text-decoration: none;
 }
 
-.container a:visited {
+.container p a:visited {
     color: rgb(28, 75, 117);
     text-decoration: none;
 }
 
-.container a:hover {
+.container h1 a:link {
+    color: inherit;
+    text-decoration: none;
+}
+
+.container h1 a:visited {
+    color: inherit;
+    text-decoration: none;
+}
+
+.container p a:hover, .container h1 a:hover {
     text-decoration: underline;
 }
 
@@ -144,30 +154,92 @@ body {
     background-color: rgb(255, 255, 255);
 }
 
-.project-page a h2:link {
+#projects-grid {
+    display: grid;
+    grid-template-columns: 33.3% 50% 16.7%;
+    margin: 10px;
+}
+
+#projects-grid .img {
+    display: grid;
+    grid-column: 1 / span 1;
+    grid-row: 1 / span 1;
+    max-width: 300px;
+    margin-right: 10px;
+    align-content: center;
+
+}
+
+#projects-grid .text {
+    display: inline;
+    grid-column: 2 / span 1;
+    grid-row: 1 / span 1;
+    vertical-align: top;
+    margin: 5px;
+    padding: 0px;
+
+
+}
+
+#projects-grid .text h2{
+    white-space: nowrap;
+
+
+}
+
+#projects-grid .text h2, h3, h4, h5, h6, p{
+    margin: 5px;
+    padding: 0px;
+    vertical-align: top;
+}
+
+
+#projects-grid .extra {
+    display: grid;
+    grid-column: 3 / span 1;
+    grid-row: 1 / span 1;
+    align-content: center;
+    margin-top: 20px;
+
+}
+
+
+#projects-grid .img img {
+    max-width: 100%;
+    height: auto;
+    width: auto;
+}
+
+#projects-grid .text a:link {
     color: rgb(100, 181, 192);
     text-decoration: none;
 }
 
-.project-page a h2:visited {
+#projects-grid .text a:visited {
     color: rgb(100, 181, 192);
     text-decoration: none;
 }
 
-.project-page a h2:hover {
+#projects-grid .text a:hover {
     text-decoration: underline;
 }
 
+#projects-grid .extra ul {
+    list-style-type: none;
+    text-align: center;
+    padding: 0px;
+    margin: 0px;
+    outline: 1px solid grey;;
+}
 
-
-/* Keep class ofproject images same size
-   Can we scale to original image size better? */
-.project_image {
-    float: left;
-    max-width:300px;
-    width: auto;
-    height: auto;
-    margin-top: 25px;
+#projects-grid .extra #language{
+    color: black;
+}
+#projects-grid .extra #framework{
+    color: black;
+}
+#projects-grid .extra #package{
+    color: grey;
 }
 
 .submit {
@@ -203,6 +275,10 @@ body {
     clear: both;
     display: table;
   }
+
+.register-text {
+    font-style: italic;
+}
 
 /* Colour scheme taken from advice and recommendation here: https://blog.datawrapper.de/beautifulcolors/ */
 .color_storage {

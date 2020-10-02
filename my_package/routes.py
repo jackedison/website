@@ -16,7 +16,7 @@ from datetime import datetime
 @app.route('/')
 @app.route('/index')
 def index():
-    projects = Projects.query.all()  # imported from models
+    projects = Projects.query.order_by(Projects.date)  # imported from models
 
     # Return HTML code from template and rendered variables
     return render_template('index.html', projects=projects)
@@ -103,12 +103,12 @@ def user(username):
 def projects():
     # Send html the db of my projects and thats about it?
     # Feed table name in as db then db.column in html
-    projects = Projects.query.all()  # imported from models
+    projects = Projects.query.order_by(Projects.date)  # imported from models
 
     intro = '''
     Below are programming projects I have worked on in recent times. My 
     particular interests have been in market analysis, AI for game solving, 
-    and some convenient tools. Click on images to go to project/github.'''
+    and some convenient tools. Click on the headers for Github repos.'''
     return render_template('projects.html', intro=intro, projects=projects)
 
 
@@ -116,7 +116,6 @@ def projects():
 @login_required
 def edit_project(id):
     # Ensure only I can edit projects
-    print(current_user.username)
     if current_user.username != "Jack":
         return render_template('403.html')
 
@@ -130,6 +129,7 @@ def edit_project(id):
             project.img_path = form.img_path.data
             project.url_to_link = form.url_to_link.data
             project.key_project = form.key_project.data
+            project.date = form.date.data
 
             # Remove all languages from db and add all new ones
             languages = project.languages
@@ -185,12 +185,14 @@ def edit_project(id):
         form.img_path.data = project.img_path
         form.url_to_link.data = project.url_to_link
         form.key_project.data = project.key_project
+        form.date.data = project.date
         form.languages.data = [lang.language for lang in project.languages]
         form.packages.data = [pack.package for pack in project.packages]
         form.frameworks.data = [frame.framework for frame in project.frameworks]
         form.categories.data = [cat.category for cat in project.categories]
 
     return render_template('edit_project.html', project=project, form=form)
+
 
 @app.route('/blog')
 def blog():

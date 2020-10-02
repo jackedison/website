@@ -8,32 +8,40 @@
     <p>{{ intro }}</p>
         {% for project in projects|reverse %}
             <hr>
-            <table>
-                <tr valign="top">
-                    <td>
+            <div id="projects-grid">
+                <div class="img">
+                    {% if current_user.username == 'Jack' %}
+                        <a href="{{ url_for('edit_project', id=project.id) }}" target="_blank">
+                    {% else %}
                         <a href="{{ project.url_to_link }}" target="_blank">
-                            <img src="{{ url_for('static', filename=project.img()) }}"
-                            class="project_image"
-                            alt="{{ project.title }}"/>
-                        </a>
-                    </td>
+                    {% endif %}
+                    <img src="{{ url_for('static', filename=project.img()) }}"alt="{{ project.title }}"/></a>
+                </div>
 
-                    <td>
-                        <a href="{{ project.url_to_link }}" target="_blank">
-                            <h2>{{ project.title }}</h2>
-                        </a>
-                        <p>{{ project.body }}</p>
-                        <p>Languages: 
-                            {% for language in project.languages %}
-                                {{ language.language }}
-                            {% endfor %}
-                        </p>
-                        <p> Posted: {{ project.date.strftime('%A %d %b %Y at %H:%M') }}</p>
-                    </td>
-                </tr>
-            </table>
+                <div class="text">
+                    <a href="{{ project.url_to_link }}" target="_blank"><h2>{{ project.title }}</h2></a>
+                    <h4> {{ project.date.strftime('%B %Y') }}</h4>
+                    <p>{{ project.body }}</p>
+                </div>
+
+                <div class="extra">
+                    <ul>
+                        {% for language in project.languages %}
+                            <li id="language">{{ language.language }}</li>
+                        {% endfor %}
+
+                        {% for framework in project.frameworks %}
+                            <li id="framework">{{ framework.framework }}</li>
+                        {% endfor %}
+
+                        {% for package in project.packages %}
+                            <li id="package">{{ package.package }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
         {% endfor %}
     </div>
-    </div>
+</div>
 
 {% endblock %}

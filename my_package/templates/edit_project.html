@@ -60,7 +60,9 @@
             </div>
         </div>
 
-        <p>Project submitted: {{ project.date }}</p>
+        {{ form.date.label }}<br>
+        {{ form.date()  }}<br><br>
+
     </p>
     <p>{{ form.submit(class='submit') }}</p>
     <p>{{ form.delete(class='delete') }}</p>
