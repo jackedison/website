@@ -452,13 +452,66 @@ These can be easily run with `python tests.py` from terminal. Or vscode implemen
 
 If we had implemented followers we could add a form to follow on the user's page and update their profile to show the number of followers. We have done pretty similar stuff already so only new feature here would be a many to many database set up.
 
-<h2> Chapter 9: Pagination </h2>
 
-Submission of new posts.
+<h2> Hosting on Heroku </h2>
 
-To submit new posts to our blog we could build a method in browser (form class) instead of doing it directly from terminal.
+Can deply through git by downloading Heroku CLI and interacting through terminal.
 
-<h2> Actually lets convert this into my website now then go back to tutorial and add anything else </h2>
+In our root directory we will need:
+
+1. `Procfile` to tell Heroku how to execute
+2. `requirements.txt` so that Heroku knows which dependancies to download
+
+Then using the CLI we can create and deploy our application with.
+
+`heroku apps:create jack-edison` - create a heroku git connection.
+
+`git remote -v` - will now show you the new heroku git links.
+
+`heroku config:set FLASK_APP=web_framework.py` - set FLASK_APP environmental variable if not done.
+
+Then just deploy:
+
+`git add .`
+
+`git commit -a -m "heroku deployment changes"`
+
+`git push heroku master`
+
+Useful links:
+
+* https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-xviii-deployment-on-heroku
+* https://devcenter.heroku.com/articles/getting-started-with-python#deploy-the-app
+* https://dashboard.heroku.com/apps
+
+I have now bought a custom domain `jackedison.com` from google domains for £10/month. I have pointed the DNS to this heroku site.
+
+<h3>Heroku issues</h3>
+
+One problem with Heroku is that they use an ephemeral file system. This means data saved to the file system is wiped periodically.
+
+This is a problem for our sqlite3 database.
+
+We can create a free heroku postgres database with:
+
+`heroku addons:add heroku-postgresql:hobby-dev`. This will save the DATABASE_URL environmental variable so work with our tool.
+
+<h3>Updating heroku page</h3>
+
+Navigate to the directory in terminal and check there is still a git remote to heroku.
+
+`git remote -v`
+
+Then just deploy with:
+
+`git status` - to see changes
+
+`git add .`
+
+`git commit -a -m "heroku deployment changes"`
+
+`git push heroku master`
+
 
 **LETS TRY BUILD A PROPER MY PROJECTS AREA FIRST - Blog later**
 
@@ -475,6 +528,7 @@ To submit new posts to our blog we could build a method in browser (form class) 
 5. Consider implementing web form to do so (pagination)
 
 N/A blog only?. Default my blog page with title, text, pictures?
+
 
 <h2> CSS & HTML notes </h2>
 
@@ -498,17 +552,18 @@ CSS can be added to an HTML document in 3 ways:
 
 In html you can use `meta` tags to assign meta data to the website. A title for google to scrape, a description, keywords, etc.
 
-**Lets create a proper home page**:
+<h2> Creation of my site (KISS - {keep it simple stupid}) </h2>
+
+Home page with:
 
 * Photo of me
 * About section of me
 * Side links of images to linkedin etc
 
-Literally just copy Tristan Hume.
+<h3> Favicon </h3>
 
 Favicon: https://favicon.io/favicon-generator/ - kumbh sans font 110
 
-KISS - {keep it simple stupid}
 
 <h3> Colour scheme </h3>
 
@@ -521,12 +576,8 @@ Colour scheme taken from advice and recommendation on colour picking here: https
 * color: rgb(174, 93, 33);
 
 
-We have our colour scheme, lets create super basic template with quality content now.
+<h2> To do: </h2>
 
-In html by adding target="_blank" to urls we can set browser to open them in new tab. We will use this for all external webpages in the header.
-
-
-What next?:
 
 * couldnt find good way to add profile pic to home page
 * smaller project photos to index
@@ -537,40 +588,33 @@ What next?:
 * start adding projects database - include key projects column. Add languages and make nicer
 * css flexbox game/tutorial AND NOTES on PC
 * make projects page look nicer
-
-
-
-* Keep adding projects
-
-* comb through html and css any more best practices (i.e. email)
 * push to github again!
 * host online
-* https?
+
+
+
+
+* extend footer margin slightly
+* Keep adding projects
+* comb through html and css any more best practices (i.e. email)
 * database validators and migrate to restrictions in sql too.
-* First blog post about website construction?
+
+
+* heroku postgre database for ephemeral file system?
 * javascript hover over an image make it bigger
+* First blog post about website construction? - for blog use a css framework
+* https?
+* add to cv and linkedin
+* more of tutorial (skim through it and do stuff like REST api?)
+* some way more advanced flask ideas: https://www.fullstackpython.com/flask.html
+* do some react stuff
 
-<h2> Hosting on Heroku </h2>
 
-Must be done through git.
 
-Heroku looks for a file called Procfile in root firectory. For Python also requires a requirements.txt file for all module dependencies.
 
-Install Heroku CLI to manage from terminal.
 
-`heroku apps:create my-package`
 
-`git remote -v` will now show you the new heroku git links.
 
-One problem with Heroku is that they use an ephemeral file system. This means data saved to the file system is wiped periodically.
-
-This is a problem for our sqlite3 database.
-
-We can create a free heroku postgres database with:
-
-`heroku addons:add heroku-postgresql:hobby-dev`. This will save the DATABASE_URL environmental variable so work with our tool.
-
-Procfile tells heroku how to execute.
 
 **question/to do: how would we implement a relational database from ground up? what links in a class (like our linked list attempt)**
 
